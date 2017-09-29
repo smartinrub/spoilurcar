@@ -1,28 +1,31 @@
 package com.sergiomartin.spoilurcar.models;
 
+import java.util.List;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Document(collection = "car")
+@Document(collection = "cars")
 @JsonIgnoreProperties(value = {"CreateAt"}, allowGetters = true)
 public class Car {
 	@Id
-	private String id;
 	@NotBlank
 	@Size(max = 8, min = 6)
-	@Indexed(unique = true)
-	private String plate;
+	@Field("_id")
+	private String id;
 	@Size(max = 100)
 	private String model;
-	@Size(max = 4)
-	private int year;
+	private Integer year;
 	private String color;
+	@DBRef
+	private List<Part> parts;
 	
 	
 	public Car() {
@@ -39,17 +42,6 @@ public class Car {
 		this.id = id;
 	}
 
-
-	public String getPlate() {
-		return plate;
-	}
-
-
-	public void setPlate(String plate) {
-		this.plate = plate;
-	}
-
-
 	public String getModel() {
 		return model;
 	}
@@ -60,12 +52,12 @@ public class Car {
 	}
 
 
-	public int getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
 
-	public void setYear(int year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
@@ -78,12 +70,23 @@ public class Car {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	
+	
+
+	public List<Part> getParts() {
+		return parts;
+	}
+
+
+	public void setParts(List<Part> parts) {
+		this.parts = parts;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", plate=" + plate + ", model=" + model + ", year=" + year + ", color=" + color + "]";
+		return "Car [id=" + id + ", model=" + model + ", year=" + year
+				+ ", color=" + color + "]";
 	}
-	
 	
 }

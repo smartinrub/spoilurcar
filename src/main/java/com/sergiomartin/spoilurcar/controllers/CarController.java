@@ -30,10 +30,10 @@ public class CarController {
 		carRepository.save(car);
 	}
 	
-	@GetMapping(value = "/cars/{plate}")
-	public ResponseEntity<Car> getCarByPlate(
-			@PathVariable("plate") String plate) {
-		Car car = carRepository.findOne(plate);
+	@GetMapping(value = "/cars/{id}")
+	public ResponseEntity<Car> getCarByid(
+			@PathVariable("id") String id) {
+		Car car = carRepository.findOne(id);
 		
 		if (car == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,11 +42,11 @@ public class CarController {
 		}
 	}
 	
-	@PutMapping(value = "/cars/{plate}")
+	@PutMapping(value = "/cars/{id}")
 	public ResponseEntity<Car> updateCar(
-			@PathVariable("plate") String plate, 
+			@PathVariable("id") String id, 
 			@Valid @RequestBody Car car) {
-		Car carData = carRepository.findOne(plate);
+		Car carData = carRepository.findOne(id);
 		
 		if (carData == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,8 +62,8 @@ public class CarController {
 		
 	}
 	
-	@DeleteMapping(value = "/cars/{plate}")
-	public void deleteCar(@PathVariable("plate") String plate) {
-		carRepository.delete(plate);
+	@DeleteMapping(value = "/cars/{id}")
+	public void deleteCar(@PathVariable("id") String id) {
+		carRepository.delete(id);
 	}
 }
