@@ -2,6 +2,7 @@ package com.sergiomartin.spoilurcar.controllers;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,10 @@ public class CarController {
 	}
 	
 	@PostMapping("/cars")
-	public void createCar(@Valid @RequestBody Car car) {
+	public ResponseEntity<Car> createCar(@Valid @RequestBody Car car) {
 		carRepository.save(car);
+		return new ResponseEntity<>(car, HttpStatus.CREATED);
+		
 	}
 	
 	@GetMapping(value = "/cars/{id}")
