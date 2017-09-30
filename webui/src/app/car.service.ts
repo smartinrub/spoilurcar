@@ -23,6 +23,13 @@ export class CarService {
       .catch(this.handleError);
   }
 
+  updateCar(car: Car): Promise<Car> {
+    return this.http.put(this.baseUrl + '/api/cars/' + car.id, car)
+      .toPromise()
+      .then(response => response.json() as Car)
+      .catch(this.handleError);
+  }
+
   deleteCar(id: string): Promise<any> {
     return this.http.delete(this.baseUrl + '/api/cars/' + id)
       .toPromise()
