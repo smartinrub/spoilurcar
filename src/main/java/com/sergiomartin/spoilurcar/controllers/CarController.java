@@ -53,13 +53,9 @@ public class CarController {
 		
 		if (carData == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		}	
 		
-		carData.setModel(car.getModel());
-		carData.setYear(car.getYear());
-		carData.setColor(car.getColor());
-		
-		Car updatedCar = carRepository.save(carData);
+		Car updatedCar = carRepository.save(car);
 		
 		return new ResponseEntity<>(updatedCar, HttpStatus.OK);
 		

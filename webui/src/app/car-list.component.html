@@ -39,18 +39,17 @@
         <tr *ngFor="let car of cars, let i = index">
           <th scope="row">{{i + 1}}</th>
 
-          <td *ngIf="!editing || editingCar.id !== car.id">{{car.id}}</td>
+          <td>{{car.id}}</td>
           <td *ngIf="!editing || editingCar.id !== car.id">{{car.model}}</td>
           <td *ngIf="!editing || editingCar.id !== car.id">{{car.year}}</td>
           <td *ngIf="!editing || editingCar.id !== car.id">{{car.color}}</td>
           <td *ngIf="!editing || editingCar.id !== car.id"><a><i (click)="editCar(car)" class="material-icons edit">edit</i></a></td>
           <td *ngIf="!editing || editingCar.id !== car.id"><a (click)="confirmDelete(car.id)"><i class="material-icons delete">delete</i></a></td>
 
-          <td *ngIf="editing && editingCar.id === car.id"><input size="9" type="text" [(ngModel)]="editingCar.id"></td>
           <td *ngIf="editing && editingCar.id === car.id"><input size="10" type="text" [(ngModel)]="editingCar.model"></td>
           <td *ngIf="editing && editingCar.id === car.id"><input size="4" type="text" [(ngModel)]="editingCar.year"></td>
           <td *ngIf="editing && editingCar.id === car.id"><input size="6" type="text" [(ngModel)]="editingCar.color"></td>
-          <td *ngIf="editing && editingCar.id === car.id"><a><i (click)="updateCar(car)" class="material-icons">done</i></a></td>
+          <td *ngIf="editing && editingCar.id === car.id"><a><i (click)="updateCar(editingCar)" class="material-icons">done</i></a></td>
           <td *ngIf="editing && editingCar.id === car.id"></td>
         </tr>
       </tbody>

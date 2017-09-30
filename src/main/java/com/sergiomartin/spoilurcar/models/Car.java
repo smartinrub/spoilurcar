@@ -2,11 +2,11 @@ package com.sergiomartin.spoilurcar.models;
 
 import java.util.List;
 
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -24,7 +24,6 @@ public class Car {
 	private String model;
 	private Integer year;
 	private String color;
-	@DBRef
 	private List<Part> parts;
 	
 	
