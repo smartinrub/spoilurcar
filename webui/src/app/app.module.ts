@@ -10,6 +10,7 @@ import { CarListComponent } from './car-list.component';
 import { PartListComponent } from './part-list.component';
 
 import { CarService } from './car.service';
+import { PartService } from './part.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { CarService } from './car.service';
     FormsModule,
     HttpModule
   ],
-  providers: [CarService],
+  providers: [CarService, PartService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
