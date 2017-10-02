@@ -1,0 +1,56 @@
+
+<div *ngIf="car">
+  <h2 class="text-center">{{car.id}}</h2>
+  <form #partForm="ngForm" (ngSubmit) = "createPart(partForm)" class="container" novalidate>
+      <div class="form-row align-items-center">
+          <div class="col-xl-3 col-md-4 col-sm-6 form-group">
+              <label class="sr-only" for="name">Part</label>
+              <div class="input-group mb-2 mb-sm-0">
+                <div class="input-group-addon">Part</div>
+                <input type="text" class="form-control" id="name"
+                  placeholder="Part"
+                  name="part"
+                  [(ngModel)]="newPart.name"
+                  #name="ngModel"
+                  maxlength="20"
+                  required>
+              </div>
+          </div>
+          <div class="col-auto form-group">
+              <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Submit</button>
+          </div>
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            <div [hidden]="!name.hasError('required')">Name is required</div>
+          </div>
+      </div>
+    </form>
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Last Date</th>
+        <th>Kms</th>
+        <th>Last Kms</th>
+        <th>Next Kms</th>
+        <th>Details</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let part of car.parts, let i = index" >
+        <th scope="row">{{i + 1}}</th>
+
+        <td>{{part.name}}</td>
+        <td>{{part.date | date: 'dd/MM/yyyy'}}</td>
+        <td>{{part.lastDate | date: 'dd/MM/yyyy'}}</td>
+        <td>{{part.kms | number}}</td>
+        <td>{{part.lastKms | number}}</td>
+        <td>{{part.nextKms | number}}</td>
+        <td>{{part.details}}</td>
+        <td><a (click)="confirmDelete(part.name)"><i class="material-icons delete">delete</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

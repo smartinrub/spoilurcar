@@ -14,6 +14,7 @@ export class CarListComponent implements OnInit {
   newCar: Car = new Car();
   editingCar: Car = new Car();
   editing: Boolean = false;
+  selectedCar: Car;
 
   constructor(private carService: CarService) {}
 
@@ -64,5 +65,9 @@ export class CarListComponent implements OnInit {
   exitEditing(): void {
     this.editingCar = new Car();
     this.editing = false;
+  }
+
+  onSelect(car: Car): void {
+    this.selectedCar = car;
   }
 }

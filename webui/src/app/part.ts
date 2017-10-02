@@ -2,7 +2,7 @@ export class Part {
   name: string;
   date: string;
   lastDate: string;
-  mks: number;
+  kms: number;
   lastKms: number;
   nextKms: number;
   details: string;
