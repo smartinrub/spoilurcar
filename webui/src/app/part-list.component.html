@@ -60,7 +60,7 @@
         <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.lastKms"></td>
         <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.nextKms"></td>
         <td *ngIf="editing && editingPart.name === part.name"><input size="12" maxlength="20" type="text" [(ngModel)]="editingPart.details"></td>
-        <td *ngIf="editing && editingPart.name === part.name"><a><i (click)="updatePart(editingPart)" class="material-icons">done</i></a></td>
+        <td *ngIf="editing && editingPart.name === part.name"><a><i (click)="updatePart(car.id, editingPart)" class="material-icons">done</i></a></td>
         <td *ngIf="editing && editingPart.name === part.name"></td>
       </tr>
     </tbody>

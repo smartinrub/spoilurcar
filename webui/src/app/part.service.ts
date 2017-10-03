@@ -14,8 +14,15 @@ export class PartService {
 
   createPart(carId: string, part: Part): Promise<Part> {
     return this.http.post(this.baseUrl + '/api/cars/parts/' + carId, part)
-    .toPromise().then(response => response.json() as Part)
-    .catch(this.handleError);
+      .toPromise().then(response => response.json() as Part)
+      .catch(this.handleError);
+  }
+
+  updatePart(carId: string, part: Part): Promise<Part> {
+    return this.http.put(this.baseUrl + '/api/cars/parts/' + carId + '/' + part.name, part)
+      .toPromise()
+      .then(response => response.json() as Part)
+      .catch(this.handleError);
   }
 
   deletePart(carId: string, partName: string): Promise<any> {

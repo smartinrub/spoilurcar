@@ -36,8 +36,14 @@ export class PartListComponent {
       });
   }
 
-  updatePart(partData: Part): void {
+  updatePart(carId: string, partData: Part): void {
     console.log(partData);
+    this.partService.updatePart(carId, partData)
+    .then(updatedPart => {
+      const editingPart = this.car.parts.find(part => part.name === updatedPart.name);
+      Object.assign(editingPart, updatedPart);
+      this.exitEditing();
+    });
 
   }
 
@@ -55,5 +61,10 @@ export class PartListComponent {
   editPart(part: Part): void {
     this.editing = true;
     Object.assign(this.editingPart, part);
+  }
+
+  exitEditing(): void {
+    this.editingPart = new Part();
+    this.editing = false;
   }
 }

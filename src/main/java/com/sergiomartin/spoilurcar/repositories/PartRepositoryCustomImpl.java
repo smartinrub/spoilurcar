@@ -12,7 +12,7 @@ import com.sergiomartin.spoilurcar.models.Car;
 import com.sergiomartin.spoilurcar.models.Part;
 
 @Repository
-public class PartRepositoryImpl implements PartRepository {
+public class PartRepositoryCustomImpl implements PartRepositoryCustom {
 
 	@Autowired
 	MongoTemplate mongoTemplate;
@@ -26,6 +26,21 @@ public class PartRepositoryImpl implements PartRepository {
 		
 		mongoTemplate.updateMulti(query, update, Car.class);
 		
+	}
+	
+	@Override
+	public Part updatePartByCarId(String carId, Part part) {
+		Query query = Query.query(Criteria.where("id").is(carId));
+		
+		//TODO: make it more simple, everything in one update
+		Update update = new Update()
+				.pull("parts", new BasicDBObject("name", part.getName()));
+		mongoTemplate.updateFirst(query, update, Car.class);
+		
+		update = new Update()
+				.addToSet("parts", part);
+		mongoTemplate.updateFirst(query, update, Car.class);
+		return part;
 	}
 	
 	@Override
