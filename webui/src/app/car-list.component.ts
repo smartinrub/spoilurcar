@@ -27,6 +27,7 @@ export class CarListComponent implements OnInit {
   }
 
   createCar(carForm: NgForm): void {
+    this.newCar.parts = [];
     this.carService.createCar(this.newCar)
       .then(createdCar => {
         console.log(createdCar);
@@ -48,7 +49,10 @@ export class CarListComponent implements OnInit {
 
   deleteCar(id: string): void {
     this.carService.deleteCar(id)
-      .then(() => this.cars = this.cars.filter(car => car.id !== id));
+      .then(() => {
+        this.cars = this.cars.filter(car => car.id !== id);
+        this.selectedCar = null;
+      });
   }
 
   confirmDelete(id: string) {

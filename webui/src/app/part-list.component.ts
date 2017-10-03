@@ -12,14 +12,32 @@ import { Part } from './part';
 })
 
 export class PartListComponent {
+
   @Input() car: Car;
 
-  parts: Part[];
   newPart: Part = new Part();
+  editingPart: Part = new Part();
+  editing: Boolean = false;
 
   constructor(private partService: PartService) {}
 
+  // function to create new part and pass it to the service
+  // only use partForm variable to reset the form because
+  // this variable only contains a string
+  // newPart object is filled on html document and it is pass
+  // it to the service
   createPart(partForm: NgForm): void {
+    this.partService.createPart(this.car.id, this.newPart)
+      .then(createdPart => {
+        console.log(createdPart);
+        partForm.reset();
+        this.newPart = new Part();
+        this.car.parts.unshift(createdPart);
+      });
+  }
+
+  updatePart(partData: Part): void {
+    console.log(partData);
 
   }
 
@@ -32,5 +50,10 @@ export class PartListComponent {
     if (confirm('Are you sure?')) {
       this.deletePart(name, partName);
     }
+  }
+
+  editPart(part: Part): void {
+    this.editing = true;
+    Object.assign(this.editingPart, part);
   }
 }

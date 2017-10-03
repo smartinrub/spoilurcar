@@ -36,24 +36,36 @@
         <th>Next Kms</th>
         <th>Details</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let part of car.parts, let i = index" >
         <th scope="row">{{i + 1}}</th>
 
-        <td>{{part.name}}</td>
-        <td>{{part.date | date: 'dd/MM/yyyy'}}</td>
-        <td>{{part.lastDate | date: 'dd/MM/yyyy'}}</td>
-        <td>{{part.kms | number}}</td>
-        <td>{{part.lastKms | number}}</td>
-        <td>{{part.nextKms | number}}</td>
-        <td>{{part.details}}</td>
-        <td><a (click)="confirmDelete(car.id, part.name)"><i class="material-icons delete">delete</i></a></td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.name}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.date | date: 'dd/MM/yyyy'}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastDate | date: 'dd/MM/yyyy'}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.kms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastKms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.nextKms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.details}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name"><a><i (click)="editPart(part)" class="material-icons edit">edit</i></a></td>
+        <td *ngIf="!editing || editingPart.name !== part.name"><a (click)="confirmDelete(car.id, part.name)"><i class="material-icons delete">delete</i></a></td>
+
+        <td *ngIf="editing && editingPart.name === part.name"><input size="10" maxlength="20" type="text" [(ngModel)]="editingPart.name"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.date"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.lastDate"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.kms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.lastKms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.nextKms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="12" maxlength="20" type="text" [(ngModel)]="editingPart.details"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><a><i (click)="updatePart(editingPart)" class="material-icons">done</i></a></td>
+        <td *ngIf="editing && editingPart.name === part.name"></td>
       </tr>
     </tbody>
   </table>
-  <div class="text-danger text-center" *ngIf="car.parts == null">
+  <div class="text-danger text-center" *ngIf="car.parts.length == 0">
       <p>No Parts Found!</p>
   </div>
 </div>
