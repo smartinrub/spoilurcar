@@ -1,29 +1,35 @@
 
 <div *ngIf="car">
-  <h2 class="text-center">{{car.id}}</h2>
-  <form #partForm="ngForm" (ngSubmit) = "createPart(partForm)" class="container" novalidate>
-      <div class="form-row align-items-center">
-          <div class="col-xl-3 col-md-4 col-sm-6 form-group">
-              <label class="sr-only" for="name">Part</label>
-              <div class="input-group mb-2 mb-sm-0">
-                <div class="input-group-addon">Part</div>
-                <input type="text" class="form-control" id="name"
-                  placeholder="Part"
-                  name="part"
-                  [(ngModel)]="newPart.name"
-                  #name="ngModel"
-                  maxlength="20"
-                  required>
+  <div class="row container">
+    <div class="col-sm-11">
+      <form #partForm="ngForm" (ngSubmit) = "createPart(partForm)" novalidate>
+          <div class="form-row align-items-center">
+              <div class="col-xl-5 col-md-6 col-sm-8 form-group">
+                  <label class="sr-only" for="name">Part</label>
+                  <div class="input-group mb-2 mb-sm-0">
+                    <div class="input-group-addon">Part</div>
+                    <input type="text" class="form-control" id="name"
+                      placeholder="Part"
+                      name="part"
+                      [(ngModel)]="newPart.name"
+                      #name="ngModel"
+                      maxlength="20"
+                      required>
+                  </div>
+              </div>
+              <div class="col-auto form-group">
+                  <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Submit</button>
+              </div>
+              <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                <div [hidden]="!name.hasError('required')">Name is required</div>
               </div>
           </div>
-          <div class="col-auto form-group">
-              <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Submit</button>
-          </div>
-          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-            <div [hidden]="!name.hasError('required')">Name is required</div>
-          </div>
+        </form>
       </div>
-    </form>
+      <div class="col-sm-1 pull-right">
+        <h2><span class="badge badge-success">{{car.id}}</span></h2>
+      </div>
+    </div>
   <table class="table table-hover">
     <thead class="thead-inverse">
       <tr>
