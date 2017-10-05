@@ -1,0 +1,77 @@
+
+<div *ngIf="car">
+  <div class="row container">
+    <div class="col-sm-11">
+      <form #partForm="ngForm" (ngSubmit) = "createPart(partForm)" novalidate>
+          <div class="form-row align-items-center">
+              <div class="col-xl-5 col-md-6 col-sm-8 form-group">
+                  <label class="sr-only" for="name">Part</label>
+                  <div class="input-group mb-2 mb-sm-0">
+                    <div class="input-group-addon">Part</div>
+                    <input type="text" class="form-control" id="name"
+                      placeholder="Part"
+                      name="part"
+                      [(ngModel)]="newPart.name"
+                      #name="ngModel"
+                      maxlength="20"
+                      required>
+                  </div>
+              </div>
+              <div class="col-auto form-group">
+                  <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Submit</button>
+              </div>
+              <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                <div [hidden]="!name.hasError('required')">Name is required</div>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-1 pull-right">
+        <h2><span class="badge badge-success">{{car.id}}</span></h2>
+      </div>
+    </div>
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Last Date</th>
+        <th>Kms</th>
+        <th>Last Kms</th>
+        <th>Next Kms</th>
+        <th>Details</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let part of car.parts, let i = index" >
+        <th scope="row">{{i + 1}}</th>
+
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.name}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.date | date: 'dd/MM/yyyy'}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastDate | date: 'dd/MM/yyyy'}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.kms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastKms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.nextKms | number}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.details}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name"><a><i (click)="editPart(part)" class="material-icons edit">edit</i></a></td>
+        <td *ngIf="!editing || editingPart.name !== part.name"><a (click)="confirmDelete(car.id, part.name)"><i class="material-icons delete">delete</i></a></td>
+
+        <td *ngIf="editing && editingPart.name === part.name"><input size="10" maxlength="20" type="text" [(ngModel)]="editingPart.name"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.date"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.lastDate"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.kms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.lastKms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="6" maxlength="20" type="text" [(ngModel)]="editingPart.nextKms"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><input size="12" maxlength="20" type="text" [(ngModel)]="editingPart.details"></td>
+        <td *ngIf="editing && editingPart.name === part.name"><a><i (click)="updatePart(car.id, editingPart)" class="material-icons">done</i></a></td>
+        <td *ngIf="editing && editingPart.name === part.name"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-danger text-center" *ngIf="car.parts.length == 0">
+      <p>No Parts Found!</p>
+  </div>
+</div>
