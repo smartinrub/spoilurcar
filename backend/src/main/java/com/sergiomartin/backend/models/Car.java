@@ -1,4 +1,4 @@
-package com.sergiomartin.spoilurcar.models;
+package com.sergiomartin.backend.models;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.sergiomartin.spoilurcar.repositories;
+package com.sergiomartin.backend.repositories;
 
-import com.sergiomartin.spoilurcar.models.Part;
+import com.sergiomartin.backend.models.Part;
 
 public interface PartRepositoryCustom {
 	

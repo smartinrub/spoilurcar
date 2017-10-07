@@ -1,9 +1,9 @@
-package com.sergiomartin.spoilurcar.repositories;
+package com.sergiomartin.backend.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.sergiomartin.spoilurcar.models.Car;
+import com.sergiomartin.backend.models.Car;
 
 public interface CarRepository extends MongoRepository<Car, String> {
 	

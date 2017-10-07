@@ -1,4 +1,4 @@
-package com.sergiomartin.spoilurcar.repositories;
+package com.sergiomartin.backend.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
-import com.sergiomartin.spoilurcar.models.Car;
-import com.sergiomartin.spoilurcar.models.Part;
+import com.sergiomartin.backend.models.Car;
+import com.sergiomartin.backend.models.Part;
 
 @Repository
 public class PartRepositoryCustomImpl implements PartRepositoryCustom {

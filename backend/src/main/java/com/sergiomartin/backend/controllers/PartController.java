@@ -1,4 +1,4 @@
-package com.sergiomartin.spoilurcar.controllers;
+package com.sergiomartin.backend.controllers;
 
 import javax.validation.Valid;
 
@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sergiomartin.spoilurcar.models.Car;
-import com.sergiomartin.spoilurcar.models.Part;
-import com.sergiomartin.spoilurcar.repositories.CarRepository;
-import com.sergiomartin.spoilurcar.repositories.PartRepositoryCustom;
+import com.sergiomartin.backend.models.Car;
+import com.sergiomartin.backend.models.Part;
+import com.sergiomartin.backend.repositories.CarRepository;
+import com.sergiomartin.backend.repositories.PartRepositoryCustom;
+import com.sergiomartin.backend.utils.DateModifier;
 
 @RestController
 @RequestMapping("/api")
@@ -48,6 +49,8 @@ public class PartController {
 		if (carData == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+//		part.setDate(DateModifier.swapDayMonth(part.getDate()));
+//		part.setLastDate(DateModifier.swapDayMonth(part.getLastDate()));
 		
 		Part partUdated = partRespositoryCustom.updatePartByCarId(carId, part);
 		
@@ -60,5 +63,6 @@ public class PartController {
 			@PathVariable("name") String partName) {
 		partRespositoryCustom.deletePartByCarId(carId, partName);
 	}
+	
 	
 }
