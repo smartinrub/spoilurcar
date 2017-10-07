@@ -50,7 +50,7 @@
         <th scope="row">{{i + 1}}</th>
 
         <td *ngIf="!editing || editingPart.name !== part.name">{{part.name}}</td>
-        <td *ngIf="!editing || editingPart.name !== part.name">{{part.date}}</td>
+        <td *ngIf="!editing || editingPart.name !== part.name">{{part.date}} | date</td>
         <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastDate}}</td>
         <td *ngIf="!editing || editingPart.name !== part.name">{{part.kms | number}}</td>
         <td *ngIf="!editing || editingPart.name !== part.name">{{part.lastKms | number}}</td>
