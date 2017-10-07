@@ -49,8 +49,14 @@ public class PartController {
 		if (carData == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-//		part.setDate(DateModifier.swapDayMonth(part.getDate()));
-//		part.setLastDate(DateModifier.swapDayMonth(part.getLastDate()));
+		
+		if (part.getDate() != null) {
+			part.setDate(DateModifier.swapDayMonth(part.getDate()));
+		}
+		
+		if (part.getLastDate() != null) {
+			part.setLastDate(DateModifier.swapDayMonth(part.getLastDate()));
+		}
 		
 		Part partUdated = partRespositoryCustom.updatePartByCarId(carId, part);
 		
