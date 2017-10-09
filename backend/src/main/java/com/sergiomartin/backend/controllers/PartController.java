@@ -20,6 +20,13 @@ import com.sergiomartin.backend.repositories.CarRepository;
 import com.sergiomartin.backend.repositories.PartRepositoryCustom;
 import com.sergiomartin.backend.utils.DateModifier;
 
+/**
+ * This class is a controller that get data from 
+ * part repository to pass it to the front end 
+ * 
+ * @author Sergio Martin Rubio
+ * @date 09-Oct-2017
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")

@@ -11,6 +11,13 @@ import com.mongodb.BasicDBObject;
 import com.sergiomartin.backend.models.Car;
 import com.sergiomartin.backend.models.Part;
 
+
+/**
+ * Repository implementation form Part queries
+ * 
+ * @author Sergio Martin Rubio
+ * @date 09-Oct-2017
+ */
 @Repository
 public class PartRepositoryCustomImpl implements PartRepositoryCustom {
 

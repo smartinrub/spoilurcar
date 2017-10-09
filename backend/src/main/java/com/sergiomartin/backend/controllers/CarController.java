@@ -1,5 +1,6 @@
 package com.sergiomartin.backend.controllers;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -20,6 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sergiomartin.backend.models.Car;
 import com.sergiomartin.backend.repositories.CarRepository;
 
+
+/**
+ * This class is a controller that get data from 
+ * car repository to pass it to the front end 
+ * 
+ * @author Sergio Martin Rubio
+ * @date 09-Oct-2017
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin("*")

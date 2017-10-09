@@ -12,6 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+/**
+ * 
+ * @author Sergio Martin Rubio
+ * @date 09-Oct-2017
+ *
+ */
 @Document(collection = "cars")
 @JsonIgnoreProperties(value = {"CreateAt"}, allowGetters = true)
 public class Car {

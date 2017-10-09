@@ -2,6 +2,12 @@ package com.sergiomartin.backend.models;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
+/**
+ * 
+ * @author Sergio Martin Rubio
+ * @date 09-Oct-2017
+ *
+ */
 public class Part {
 	
 	private String name;
