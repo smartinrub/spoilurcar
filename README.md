@@ -25,3 +25,8 @@ Install Angular 4:
 ```sh
 $ npm install -g @angular/cli
 ```
+
+To intall node_modules go to frontend folder and run:
+```sh
+$ npm install
+```
